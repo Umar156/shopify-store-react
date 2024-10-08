@@ -74,3 +74,4 @@ end
 gem 'webpacker'
 gem 'shopify_app', '~> 21.2'
 gem 'dotenv-rails'
+gem 'sidekiq', '~> 6.4'

@@ -1,7 +1,7 @@
 ShopifyApp.configure do |config|
   config.application_name = "My Shopify App"
   config.old_secret = ""
-  config.scope = "read_products, write_orders" # Consult this page for more scope options:
+  config.scope = "read_products, write_orders, read_customers" # Consult this page for more scope options:
                                   # https://help.shopify.com/en/api/getting-started/authentication/oauth/scopes
   config.embedded_app = true
   config.after_authenticate_job = false
@@ -10,6 +10,7 @@ ShopifyApp.configure do |config|
   config.log_level = :info
   config.reauth_on_access_scope_changes = true
   config.webhooks = [
+    { topic: "customers/create", address: "webhooks/customers_create" },
     { topic: "app/uninstalled", address: "webhooks/app_uninstalled"},
     { topic: "customers/data_request", address: "webhooks/customers_data_request" },
     { topic: "customers/redact", address: "webhooks/customers_redact"},
