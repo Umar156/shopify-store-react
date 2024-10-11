@@ -74,4 +74,5 @@ end
 gem 'shopify_app', '~> 21.2'
 gem 'dotenv-rails'
 gem 'sidekiq', '~> 6.4'
+gem 'devise'
 gem 'rack-cors'

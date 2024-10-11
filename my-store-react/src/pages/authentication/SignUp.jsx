@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Form from "../../components/auth/Form";
 import { signUpFormFields } from "../../constants/auth_fields";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import apiHandler from "../../utils/apiHandler";
+import endpoint from "../../enums/endpoint";
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -15,9 +17,17 @@ const SignUp = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   const inputs = signUpFormFields(formData, handleChange);
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Hello!");
+    apiHandler(endpoint.SIGN_UP, "POST", formData)
+      .then((res) => {
+        console.log("User registered successfully:", res);
+        navigate("/login");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   const location = useLocation();
   useEffect(() => {

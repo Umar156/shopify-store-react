@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import apiHandler from "../../utils/apiHandler";
+import endpoint from "../../enums/endpoint";
 
 import { signInFormFields } from "../../constants/auth_fields";
 import Form from "../../components/auth/Form";
@@ -11,7 +13,13 @@ const SignIn = () => {
   const inputs = signInFormFields(formData, handleChange);
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Hello! Login");
+    apiHandler(endpoint.SIGN_IN, "POST", formData)
+      .then((res) => {
+        console.log("User logged in successfully:", res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   return (
     <div>
