@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 
-const Form = ({ inputs, buttonText, onSubmit, formTitle }) => {
+const Form = ({ inputs, buttonText, onSubmit, formTitle, errors }) => {
   const path = useLocation();
   return (
     <div className="flex items-center justify-center min-h-[80vh] bg-gray-100 w-full">
@@ -23,6 +23,9 @@ const Form = ({ inputs, buttonText, onSubmit, formTitle }) => {
               required={input.required}
               className="shadow-sm border border-gray-300 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition duration-150 ease-in-out"
             />
+            {errors[input.name] && (
+              <span className="text-red-600 text-sm">{errors[input.name]}</span>
+            )}
           </div>
         ))}
         <button
