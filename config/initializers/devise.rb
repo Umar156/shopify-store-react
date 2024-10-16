@@ -314,4 +314,8 @@ Devise.setup do |config|
   #   jwt.secret = ENV['JWT_SECRET_KEY']
   #   jwt.expiration_time = 24.hours.to_i
   # end
+  config.jwt do |jwt|
+    jwt.secret = ENV['JWT_SECRET_KEY']
+    jwt.expiration_time = 24.hours.to_i
+  end
 end

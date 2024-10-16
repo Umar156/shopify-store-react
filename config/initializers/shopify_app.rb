@@ -5,7 +5,7 @@ ShopifyApp.configure do |config|
                                   # https://help.shopify.com/en/api/getting-started/authentication/oauth/scopes
   config.embedded_app = true
   config.after_authenticate_job = false
-  config.api_version = "2024-01"
+  config.api_version = ENV.fetch('SHOPIFY_API_VERSION', '').presence
   config.shop_session_repository = 'Shop'
   config.log_level = :info
   config.reauth_on_access_scope_changes = true
@@ -19,6 +19,7 @@ ShopifyApp.configure do |config|
 
   config.api_key = ENV.fetch('SHOPIFY_API_KEY', '').presence
   config.secret = ENV.fetch('SHOPIFY_API_SECRET', '').presence
+  config.root_url = '/shopify'
   
 
   # You may want to charge merchants for using your app. Setting the billing configuration will cause the Authenticated

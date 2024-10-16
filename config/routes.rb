@@ -1,14 +1,16 @@
 Rails.application.routes.draw do
-   devise_for :users, path: '', path_names: {
-      sign_in: 'login',
-      sign_out: 'logout',
-      registration: 'signup'
-    },
-    controllers: {
-      sessions: 'users/sessions',
-      registrations: 'users/registrations'
-    }
+  devise_for :users, path: '', path_names: {
+    sign_in: 'login',
+    sign_out: 'logout',
+    registration: 'signup'
+  },
+  controllers: {
+    sessions: 'users/sessions',
+    registrations: 'users/registrations'
+  }
   root to: 'home#index'
   get '/products', to: 'products#index'
-  mount ShopifyApp::Engine, at: '/'
+  get '/shopify', to: 'shopify#index'
+  mount ShopifyApp::Engine, at: '/shopify'
+  get 'shopify/orders', to: 'manage_order#orders'
 end

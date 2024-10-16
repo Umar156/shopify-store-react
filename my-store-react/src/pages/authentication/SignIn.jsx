@@ -30,6 +30,8 @@ const SignIn = () => {
     setErrors(validationError);
     apiHandler(endpoint.SIGN_IN, "POST", formData)
       .then((res) => {
+        const authToken = res.headers.authorization;
+        localStorage.setItem("JsonToken", authToken);
         console.log("User logged in successfully:", res);
         navigate("/home");
       })
