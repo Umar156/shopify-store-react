@@ -33,7 +33,9 @@ const SignIn = () => {
         const authToken = res.headers.authorization;
         localStorage.setItem("JsonToken", authToken);
         console.log("User logged in successfully:", res);
-        navigate("/home");
+        if (authToken) {
+          navigate("/home");
+        }
       })
       .catch((err) => {
         console.log(err);
